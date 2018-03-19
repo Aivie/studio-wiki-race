@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GameView from './GameView.js';
+import WikiLinks from './WikiLinks.js';
 
 export default class WikiGameApp extends Component {
   render() {
@@ -16,6 +17,7 @@ export default class WikiGameApp extends Component {
     return (
       <div>
         <GameView title={currentTitle} />
+        <WikiLinks title={currentTitle} addTitle={addTitle} />
       </div>
     );
   }
