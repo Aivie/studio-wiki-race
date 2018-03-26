@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GameView from './GameView.js';
 import WikiLinks from './WikiLinks.js';
+import WikiStack from './WikiStack.js';
 
 export default class WikiGameApp extends Component {
   render() {
@@ -16,8 +17,13 @@ export default class WikiGameApp extends Component {
 
     return (
       <div>
+        <WikiStack
+            titles={this.props.titles}
+            handleTitleSelected = {this.props.setCurrenttitle} />
         <GameView title={currentTitle} />
-        <WikiLinks title={currentTitle} addTitle={addTitle} />
+        <WikiLinks
+            title={currentTitle}
+            handleLinkClick={title => this.props.addTitle(title)} />
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import WikiApi from './WikiApi.js';
 
 export default class GameView extends Component {
@@ -17,13 +17,17 @@ export default class GameView extends Component {
                 });
             });
     }
-    
+    componentDidUpdate() {
+        WikiApi.getSummary(this.props.title).then(
+            summary => this.setState({ summary: summary}));
+    }
+
     render() {
         // Properties (data) provided by WikiGameHistory
         var currentTitle = this.props.title;
-        
-    return (
-        <div>
+
+        return (
+            <div>
         <h2>{currentTitle}</h2>
         <p>{this.state.summary}</p>
         </div>

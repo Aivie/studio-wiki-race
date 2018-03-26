@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import WikiApi from './WikiApi.js';
 import GameView from './GameView.js';
 
@@ -12,18 +12,22 @@ export default class WikiLinks extends Component {
     componentDidMount() {
         var self = this;
         WikiApi.getLinks(self.props.title).then((data) => {
-                self.setState({ links: data });
+            self.setState({ links: data });
         });
     }
-    
+    componentDidUpdate() {
+        WikiApi.getLinks(this.props.title).then(
+            links => this.setState({ links: links }));
+    }
+
     render() {
         // Properties (data) provided by WikiGameHistory
         var renderedLinks = this.state.links.map((data) => {
-            return (<button type="button" key={data} onClick={()=>this.props.addTitle(data)}>{data}</button>);
+            return (<button type="button" key={data} onClick={()=>this.props.handleLinkClick(data)}>{data}</button>);
         });
-        
-    return (
-        <div>
+
+        return (
+            <div>
             {renderedLinks}
         </div>
         );
